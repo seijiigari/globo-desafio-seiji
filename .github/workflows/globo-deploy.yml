@@ -75,11 +75,11 @@ jobs:
           AWS_ACCESS_KEY_ID: ${{ secrets.AWS_ACCESS_KEY_ID }}
           AWS_SECRET_ACCESS_KEY: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
 
-      - name: Mesclar mudanças da develop para main
-        if: success()
-        run: |
-          git config --global user.name "github-actions[bot]"
-          git config --global user.email "github-actions[bot]@users.noreply.github.com"
-          git checkout main
-          git merge develop --no-ff -m "Merge develop into main [skip ci]"
-          git push origin main
+      # - name: Mesclar mudanças da develop para main
+      #   if: success()//
+      #   run: |
+      #     git config --global user.name "github-actions[bot]"
+      #     git config --global user.email "github-actions[bot]@users.noreply.github.com"
+      #     git checkout main
+      #     git merge develop --no-ff -m "Merge develop into main [skip ci]"
+      #     git push origin main

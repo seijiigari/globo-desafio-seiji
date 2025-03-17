@@ -1,4 +1,4 @@
-name: destroy
+name: globo-destroy
 
 on:
   push:
@@ -23,7 +23,7 @@ jobs:
       - name: Terraform Init
         run: terraform init
         working-directory: ./src
-å√
+
       - name: Validação
         run: terraform validate
         working-directory: ./src
