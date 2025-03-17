@@ -1,3 +1,8 @@
+<<<<<<< HEAD
+=======
+##################### VPC  ######################/
+
+>>>>>>> develop
 resource "aws_vpc" "poc" {
   cidr_block           = var.vpc_cidr
   enable_dns_support   = true
@@ -60,12 +65,20 @@ resource "aws_route_table" "public" {
     Name = "${var.env}-public-rt"
   }
 }
+<<<<<<< HEAD
+=======
+
+>>>>>>> develop
 # Associação das Subnets publicas ao Route Table publica
 resource "aws_route_table_association" "public" {
   count          = length(var.public_subnet_cidrs)
   subnet_id      = aws_subnet.subnet_publica[count.index].id
   route_table_id = aws_route_table.public.id
 }
+<<<<<<< HEAD
+=======
+
+>>>>>>> develop
 # Route Table Privada
 resource "aws_route_table" "private" {
   vpc_id = aws_vpc.poc.id
@@ -77,15 +90,25 @@ resource "aws_route_table" "private" {
     Name = "${var.env}-private-rt"
   }
 }
+<<<<<<< HEAD
+=======
+
+>>>>>>> develop
 # Associação das Subnets privadas ao Route Table privada
 resource "aws_route_table_association" "private" {
   count          = length(var.private_subnet_cidrs)
   subnet_id      = aws_subnet.subnet_privada[count.index].id
   route_table_id = aws_route_table.private.id
 }
+<<<<<<< HEAD
 ##############################################################
 
 # Criação dos recursos para suportar as aplicações
+=======
+
+
+##################### APLICAÇÕES #####################
+>>>>>>> develop
 
 resource "aws_security_group" "sg_aplicacoes" {
   name        = "sg_aplicacoes"
@@ -185,10 +208,17 @@ root_block_device {
               mkdir -p /app/python-app/app-10-seg/templates
 
 
+<<<<<<< HEAD
               echo "${filebase64("${path.module}/../app-10-seg/main.py")}" | base64 --decode > /app/python-app/app-10-seg/main.py
               echo "${filebase64("${path.module}/../app-10-seg//routes.py")}" | base64 --decode > /app/python-app/app-10-seg/routes.py
               echo "${filebase64("${path.module}/../app-10-seg//templates/datetime.html")}" | base64 --decode > /app/python-app/app-10-seg/templates/datetime.html
               echo "${filebase64("${path.module}/../app-10-seg//templates/index.html")}" | base64 --decode > /app/python-app/app-10-seg/templates/index.html
+=======
+              echo "${filebase64("${path.module}/../src/app-10-seg/main.py")}" | base64 --decode > /app/python-app/app-10-seg/main.py
+              echo "${filebase64("${path.module}/../src/app-10-seg//routes.py")}" | base64 --decode > /app/python-app/app-10-seg/routes.py
+              echo "${filebase64("${path.module}/../src/app-10-seg//templates/datetime.html")}" | base64 --decode > /app/python-app/app-10-seg/templates/datetime.html
+              echo "${filebase64("${path.module}/../src/app-10-seg//templates/index.html")}" | base64 --decode > /app/python-app/app-10-seg/templates/index.html
+>>>>>>> develop
 
               cd /app/python-app/app-10-seg/
               nohup python3 main.py > app-10-seg.log 2>&1 &
@@ -234,8 +264,13 @@ resource "aws_s3_bucket" "app_bucket" {
 resource "aws_s3_object" "node_app_zip" {
   bucket = aws_s3_bucket.app_bucket.id
   key    = "node-app.zip"
+<<<<<<< HEAD
   source = "${path.module}/../node-app.zip"  
   etag   = filemd5("${path.module}/../node-app.zip")
+=======
+  source = "${path.module}/../src/node-app.zip"  
+  etag   = filemd5("${path.module}/../src/node-app.zip")
+>>>>>>> develop
 }
 
 # Elastic Beanstalk Environment
@@ -283,7 +318,11 @@ resource "aws_elastic_beanstalk_environment" "env" {
   setting {
     namespace = "aws:elasticbeanstalk:application"
     name      = "Application Healthcheck URL"
+<<<<<<< HEAD
     value     = "/health"
+=======
+    value     = "/"
+>>>>>>> develop
   }
 
   setting {
@@ -349,6 +388,10 @@ resource "aws_elastic_beanstalk_environment" "env" {
 # }
 
 ############################## MONITORAMENTO #######################################
+<<<<<<< HEAD
+=======
+
+>>>>>>> develop
 # Log Group - aplicação Python
 resource "aws_cloudwatch_log_group" "python_app_logs" {
   name = "/aws/ec2/python-app"
