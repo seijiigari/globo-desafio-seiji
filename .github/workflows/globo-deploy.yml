@@ -14,7 +14,7 @@ jobs:
     steps:
       - name: Atualizar Actions do Runner
         run: rm -rf $GITHUB_WORKSPACE/_actions
-        
+
       - name: Obter código
         uses: actions/checkout@v3
 
@@ -48,7 +48,6 @@ jobs:
     name: Terraform Apply (Aguardando Autorização)
     runs-on: ubuntu-latest
     needs: terraform-plan
-    if: github.event_name == 'workflow_dispatch'
 
     steps:
       - name: Obter código

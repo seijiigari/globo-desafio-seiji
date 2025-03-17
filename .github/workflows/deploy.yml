@@ -1,4 +1,4 @@
-name: deploy
+name: destroy
 
 on:
   push:
@@ -23,7 +23,7 @@ jobs:
       - name: Terraform Init
         run: terraform init
         working-directory: ./src
-
+å√
       - name: Validação
         run: terraform validate
         working-directory: ./src
@@ -36,7 +36,7 @@ jobs:
           AWS_SECRET_ACCESS_KEY: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
 
       - name: Upload do plano para uso posterior
-        uses: actions/upload-artifact@v2
+        uses: actions/upload-artifact@v3
         with:
           name: terraform-plan
           path: ./src/tfplan
