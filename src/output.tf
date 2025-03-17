@@ -1,19 +1,3 @@
-<<<<<<< HEAD
-output "vpc_id" {
-  description = "ID da VPC"
-  value       = aws_vpc.poc.id
-}
-
-output "public_subnet_ids" {
-  description = "IDs das subnets públicas"
-  value       = aws_subnet.subnet_publica[*].id
-}
-
-output "private_subnet_ids" {
-  description = "IDs das subnets privadas"
-  value       = aws_subnet.subnet_privada[*].id
-}
-=======
 # output "vpc_id" {
 #   description = "ID da VPC"
 #   value       = aws_vpc.poc.id
@@ -28,7 +12,6 @@ output "private_subnet_ids" {
 #   description = "IDs das subnets privadas"
 #   value       = aws_subnet.subnet_privada[*].id
 # }
->>>>>>> develop
 
 output "IP_Python_app" {
     description = "IP Publico da instancia Python_app"

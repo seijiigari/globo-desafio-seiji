@@ -14,6 +14,16 @@ A arquitetura atual é composta por:
 - Aplicação em Node.js:  Hospedada no Elastic Beanstalk, que gerencia automaticamente a implantação, dimensionamento e operação da aplicação.
 - Dois bucket S3: Um para armazenar as versões da aplicação em Node. Outro para salvar o terraform.tfstate, que guarda o estado da infra como código.
 
+Passo a passo
+    1 - Faça o clone do repositorio: git clone git@github.com:seijiigari/globo-desafio-seiji.git
+    2 - Configure o acesso programatico a sua conta AWS.
+    3 - Acesse o diretorio src
+    4 - Execute o comando terraform init
+    5 - Execute o comando terraform plan
+    6 - Execute o comando terraform apply
+    7 - Acesse as aplicações utilizando o IP e endpoint do Beanstalk apresentados no output.
+
+    OBS: Ambas aplicações só respondem em HTTP (Porta 80)
 
 Melhoria Futura
 
@@ -26,3 +36,7 @@ Na arquitetura futura, proponho as seguintes alterações:
 - O cache da aplicação em Node.js não será mais tratado no código e passará a ser gerenciado pelo API Gateway.
 - Os Aplications load balancers serão configurados com certificado gerado no AWS Certificate Manger.
 - Habilitar as Actions ja existentes no repositório Github.
+
+
+
+
