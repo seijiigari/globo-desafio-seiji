@@ -15,15 +15,16 @@ A arquitetura atual é composta por:
 - Dois bucket S3: Um para armazenar as versões da aplicação em Node. Outro para salvar o terraform.tfstate, que guarda o estado da infra como código.
 
 Passo a passo
-    1 - Faça o clone do repositorio: git clone git@github.com:seijiigari/globo-desafio-seiji.git
-    2 - Configure o acesso programatico a sua conta AWS.
-    3 - Acesse o diretorio src
-    4 - Execute o comando terraform init
-    5 - Execute o comando terraform plan
-    6 - Execute o comando terraform apply
-    7 - Acesse as aplicações utilizando o IP e endpoint do Beanstalk apresentados no output.
+- Faça o clone do repositorio: git clone git@github.com:seijiigari/globo-desafio-seiji.git
+- Configure o acesso programatico a sua conta AWS.
+- Acesse o diretorio src
+- Execute o comando terraform init
+- Execute o comando terraform plan
+- Execute o comando terraform apply
+- Acesse as aplicações utilizando o IP e endpoint do Beanstalk apresentados no output.
 
-    OBS: Ambas aplicações só respondem em HTTP (Porta 80)
+OBS: Ambas aplicações só respondem em HTTP (Porta 80)
+
 
 Melhoria Futura
 
