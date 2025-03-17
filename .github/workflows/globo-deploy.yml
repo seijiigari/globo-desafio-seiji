@@ -1,4 +1,4 @@
-name: deploy
+name: globo-deploy
 
 on:
   push:
