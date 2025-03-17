@@ -25,3 +25,4 @@ Na arquitetura futura, proponho as seguintes alterações:
 - O cache da aplicação em Python não mais tratado no código e passar a ser gerenciado por um Redis.
 - O cache da aplicação em Node.js não será mais tratado no código e passará a ser gerenciado pelo API Gateway.
 - Os Aplications load balancers serão configurados com certificado gerado no AWS Certificate Manger.
+- Habilitar as Actions ja existentes no repositório Github.
