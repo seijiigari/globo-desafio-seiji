@@ -1,0 +1,92 @@
+name: Terraform Workflow
+
+on:
+  push:
+    branches:
+      - develop
+  workflow_dispatch: # Permite execução manual
+
+permissions:
+  id-token: write
+  contents: read
+  pull-requests: write
+
+jobs:
+  terraform-plan:
+    name: Terraform Plan
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout código
+        uses: actions/checkout@v3
+
+      - name: Configurar o AWS CLI
+        uses: aws-actions/configure-aws-credentials@v2
+        with:
+          role-to-assume: arn:aws:iam::123456789012:role/terraform-github
+          aws-region: us-east-1
+
+      - name: Configurar Terraform
+        uses: hashicorp/setup-terraform@v2
+        with:
+          terraform_version: 1.6.0
+
+      - name: Inicializar Terraform
+        run: terraform init
+
+      - name: Executar Terraform Plan
+        run: terraform plan -out=tfplan
+
+      - name: Armazenar Plan para revisão
+        uses: actions/upload-artifact@v3
+        with:
+          name: terraform-plan
+          path: tfplan
+
+  approval:
+    name: Aprovação Manual
+    needs: terraform-plan
+    runs-on: ubuntu-latest
+    steps:
+      - name: Aguardar Aprovação
+        uses: hmarr/auto-approve-action@v3
+        with:
+          github-token: ${{ secrets.GITHUB_TOKEN }}
+
+  merge-and-apply:
+    name: Merge e Apply
+    needs: approval
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout código
+        uses: actions/checkout@v3
+        with:
+          ref: main
+
+      - name: Mesclar develop -> main
+        run: |
+          git fetch origin develop
+          git merge origin/develop --no-ff -m "Merge develop into main"
+          git push origin main
+
+      - name: Configurar AWS CLI
+        uses: aws-actions/configure-aws-credentials@v2
+        with:
+          role-to-assume: arn:aws:iam::123456789012:role/terraform-github
+          aws-region: us-east-1
+
+      - name: Configurar Terraform
+        uses: hashicorp/setup-terraform@v2
+        with:
+          terraform_version: 1.6.0
+
+      - name: Inicializar Terraform
+        run: terraform init
+
+      - name: Baixar Terraform Plan
+        uses: actions/download-artifact@v3
+        with:
+          name: terraform-plan
+          path: .
+
+      - name: Executar Terraform Apply
+        run: terraform apply -auto-approve tfplan
