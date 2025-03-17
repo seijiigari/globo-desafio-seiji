@@ -36,7 +36,7 @@ jobs:
           AWS_SECRET_ACCESS_KEY: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
 
       - name: Upload do plano para uso posterior
-        uses: actions/upload-artifact@v3
+        uses: actions/upload-artifact@v2
         with:
           name: terraform-plan
           path: ./src/tfplan
