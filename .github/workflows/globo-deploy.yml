@@ -1,4 +1,4 @@
-name: globo-deploy
+name: deploy
 
 on:
   push:
@@ -36,7 +36,7 @@ jobs:
           AWS_SECRET_ACCESS_KEY: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
 
       - name: Upload do plano para uso posterior
-        uses: actions/upload-artifact@v2
+        uses: actions/upload-artifact@v3
         with:
           name: terraform-plan
           path: ./src/tfplan
