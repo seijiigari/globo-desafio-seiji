@@ -33,10 +33,11 @@ Na arquitetura futura, proponho as seguintes alterações:
 - Nenhuma aplicação ficará em subnets públicas. 
 - As aplicações serão criadas em recursos hospedados na subnet privada
 - Ambas serão servidas atráves de um ALB que fará a interfarce com o usuário
-- O cache da aplicação em Python não mais tratado no código e passar a ser gerenciado por um Redis.
-- O cache da aplicação em Node.js não será mais tratado no código e passará a ser gerenciado pelo API Gateway.
+- O cache da aplicação em Python deixará de ser tratado no código e passará a ser gerenciado por um Redis.
+- O cache da aplicação em Node.js deixará de ser tratado no código e passará a ser gerenciado pelo API Gateway.
 - Os Aplications load balancers serão configurados com certificado gerado no AWS Certificate Manger.
 - Habilitar as Actions ja existentes no repositório Github.
+
 
 
 
